@@ -116,7 +116,7 @@ For each important file:
 ## Output Structure
 
 ```
-docs/
+docs/deepwiki/
 ├── README.md              # Overview + Quick Links
 ├── ARCHITECTURE.md        # System design
 ├── API.md                 # API reference
@@ -139,7 +139,7 @@ docs/
 ### Generated Structure
 
 ```
-docs/
+docs/deepwiki/
 ├── README.md
 │   # Project: MyApp
 │   # A React task manager
@@ -203,5 +203,5 @@ generate:
 
 ## Output Location
 
-Default: `docs/` directory
+Default: `docs/deepwiki/` directory
 Custom: Specify with `--output`
