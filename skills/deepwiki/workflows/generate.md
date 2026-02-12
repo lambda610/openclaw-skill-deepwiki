@@ -63,7 +63,7 @@ docs/deepwiki/
 
 **Input:**
 ```
-/deepwiki-generate --output=docs --depth=full
+/deepwiki-generate --output=docs/deepwiki --depth=full
 ```
 
 **Generated Structure:**
