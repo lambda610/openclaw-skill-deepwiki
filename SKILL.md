@@ -1,6 +1,6 @@
 ---
 name: deepwiki
-description: AI-powered local codebase documentation generator. Use for: (1) Scanning codebase structure, (2) Generating comprehensive documentation, (3) Creating API references and architecture diagrams.
+description: AI-powered local codebase documentation generator. Use for: (1) Scanning codebase structure, (2) Generating comprehensive documentation, (3) Creating API references and architecture diagrams, (4) Analyzing code organization and dependencies.
 ---
 
 # DeepWiki — Local Codebase Documentation Generator
@@ -17,52 +17,38 @@ DeepWiki analyzes your codebase and generates:
 
 ## Claude Code Usage
 
-Use `/deepwiki-scan` command directly in Claude Code:
+Simply describe what you need:
 
 ```bash
-/deepwiki-scan           # Scan current directory
-/deepwiki-scan ./src     # Scan specific directory
-/deepwiki-generate       # Generate full documentation
+"Analyze this codebase structure"
+"Generate documentation for this project"
+"Document the API and modules"
+"Scan the code and create architecture docs"
 ```
+
+The skill will automatically trigger and help you generate comprehensive documentation.
 
 ## OpenClaw Usage
 
 ### Quick Scan
-
 ```
 /deepwiki-scan [project-path]
-
-This will:
-- Scan directory structure
-- Identify key files and modules
-- Generate overview documentation
 ```
 
 ### Full Documentation
-
 ```
 /deepwiki-generate
-
-Output includes:
-- Project overview
-- Architecture diagram
-- API reference
-- Module breakdown
-- File inventory
-- Dependencies
 ```
 
 ### Specific Module
-
 ```
 /deepwiki-module [module-path]
-
-Focus on:
-- Module structure
-- Public APIs
-- Implementation details
-- Related modules
 ```
+
+## For Detailed Guidance
+
+See [SCAN_GUIDE.md](references/SCAN_GUIDE.md) for scan workflow details.
+See [GENERATE_GUIDE.md](references/GENERATE_GUIDE.md) for generate workflow details.
 
 ## Workflows
 
