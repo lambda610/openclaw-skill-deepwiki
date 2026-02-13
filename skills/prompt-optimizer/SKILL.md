@@ -1,6 +1,6 @@
 ---
 name: prompt-optimizer
-description: "AI 提示词优化工具。支持：(1) 用户提示词优化，(2) 系统提示词优化，(3) 迭代改进，(4) 文生图/图生图提示词优化，(5) 质量评估对比。使用场景：优化模糊提示词、构建系统提示词、改进现有提示词、生成图像提示词、评估提示词质量。"
+description: "AI 提示词优化工具。支持：(1) 用户提示词优化（基础/规划/专业），(2) 系统提示词优化（通用/分析/格式），(3) 迭代改进，(4) 文生图/图生图优化，(5) 提示词评估，(6) 变量提取与生成。使用场景：优化模糊提示词、构建系统提示词、改进现有提示词、生成图像提示词、评估提示词质量、提取/生成变量。"
 metadata:
   {
     "openclaw": {
@@ -12,7 +12,7 @@ metadata:
 
 # Prompt Optimizer
 
-AI 提示词优化工具，帮助编写高质量提示词。
+AI 提示词优化工具，基于 prompt-optimizer 项目内置模板。
 
 ## 快速开始
 
@@ -30,23 +30,28 @@ AI 提示词优化工具，帮助编写高质量提示词。
 
 **命令触发** (OpenClaw)：
 ```
-/prompt-optimizer optimize <需求>
-/prompt-optimizer system <角色描述>
-/prompt-optimizer image <图像描述>
+/prompt-optimizer user <提示词>
+/prompt-optimizer system <提示词>
+/prompt-optimizer iterate <提示词>
+/prompt-optimizer image <描述>
 /prompt-optimizer evaluate
 ```
 
 ## 功能概览
 
-| 功能 | 触发关键词 | 说明 |
-|------|----------|------|
-| 用户提示词优化 | `优化：` | 模糊→清晰具体 |
-| 系统提示词优化 | `/system` | 角色描述→结构化 |
-| 迭代改进 | `迭代：` | 二次改进已有提示词 |
-| 文生图优化 | `/image` | 自然语言→高质量图像提示词 |
-| 评估对比 | `评估：` | 评分 + 改进建议 |
+| 功能 | 模板数 | 说明 |
+|------|--------|------|
+| 用户提示词优化 | 6 | 基础/规划/专业 + 上下文版 |
+| 系统提示词优化 | 6 | 通用/分析/格式 + 上下文版 |
+| 迭代改进 | 3 | 通用/上下文/图像 |
+| 文生图优化 | 5 | 通用/中文/摄影/创意/JSON |
+| 图生图优化 | 3 | 通用/文案替换/JSON |
+| 提示词评估 | 20+ | 原始/优化后/对比/直接/迭代 |
+| 变量处理 | 2 | 提取/值生成 |
 
-## 详细用法
+详细模板列表见 [references/templates.md](references/templates.md)
+
+## 核心模板
 
 ### 用户提示词优化
 
@@ -56,6 +61,18 @@ AI 提示词优化工具，帮助编写高质量提示词。
 
 详见 [references/system-optimize.md](references/system-optimize.md)
 
-### 质量评估
+### 图像优化
+
+详见 [references/image-optimize.md](references/image-optimize.md)
+
+### 迭代优化
+
+详见 [references/iterate.md](references/iterate.md)
+
+### 提示词评估
 
 详见 [references/evaluate.md](references/evaluate.md)
+
+### 变量处理
+
+详见 [references/variables.md](references/variables.md)

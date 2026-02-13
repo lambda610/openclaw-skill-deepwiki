@@ -1,55 +1,227 @@
-# 评估对比提示词
+# 提示词评估
 
-Use this prompt to evaluate and compare original vs optimized prompts.
+评估提示词质量，从多维度给出评分和改进建议。
 
-## When to Use
-- User wants to evaluate prompt quality
-- User wants comparison between original and optimized
-- User needs improvement suggestions
+## 评估模式
 
-## Prompt Template
+### 按评估对象
 
+| 模式 | 说明 | 适用场景 |
+|------|------|----------|
+| 原始评估 | 评估原始提示词 | 了解基线质量 |
+| 优化后评估 | 评估优化后提示词 | 验证优化效果 |
+| 对比评估 | 原始 vs 优化 | 量化改进幅度 |
+
+### 按评估方式
+
+| 模式 | 说明 | 需要测试结果 |
+|------|------|-------------|
+| 直接评估 | 直接评估质量 | ❌ 不需要 |
+| 迭代评估 | 评估+改进方案 | ❌ 不需要 |
+| 对比评估 | 原始vs优化对比 | ✅ 需要 |
+
+### 按提示词类型
+
+- **系统提示词评估**
+- **用户提示词评估**
+- **多消息对话评估** (多轮对话)
+- **变量模式评估** (带变量的提示词)
+- **图像提示词评估** (文生图/图生图)
+
+---
+
+## 评估维度
+
+### 基础维度 (1-10分)
+
+1. **清晰度 (Clarity)**
+   - 是否有歧义
+   - 目标是否明确
+   
+2. **具体性 (Specificity)**
+   - 细节是否充分
+   - 约束是否明确
+   
+3. **结构性 (Structure)**
+   - 格式是否清晰
+   - 逻辑是否连贯
+
+### 高级维度 (可选)
+
+4. **可执行性** - 能否直接执行
+5. **一致性** - 风格/角色是否一致
+6. **边界清晰** - 限制是否明确
+
+---
+
+## 触发方式
+
+### 对比评估
 ```
-Please evaluate and compare the following prompts:
-
-## Original Prompt
-{{original}}
-
-## Optimized Prompt
-{{optimized}}
-
-## Evaluation Dimensions (1-10)
-1. Clarity (是否明确无歧义): [score]/10
-2. Specificity (细节是否充分): [score]/10
-3. Structure (结构是否清晰): [score]/10
-
-## Overall Assessment
-- Original Prompt: [X]/10
-- Optimized Prompt: [Y]/10
-- Improvement: [Z]%
-
-## Suggestions
-1. [具体的改进建议]
-2. [具体的改进建议]
-3. [具体的改进建议]
+评估：
+原始提示词：帮我写个文章
+优化后提示词：xxx
 ```
 
-## Examples
-
-**Input:** 
-- Original: "帮我写个文章"
-- Optimized: "请写一篇关于AI发展趋势的文章，字数1000-1500字，面向互联网从业者，结构包含引言、现状分析、未来趋势、结论，风格专业但易懂。"
-
-**Output:**
+### 直接评估
 ```
-1. Clarity: 7/10 - 优化后目标明确
-2. Specificity: 8/10 - 细节充分
-3. Structure: 9/10 - 结构清晰
-
-Overall: Original 4/10 → Optimized 8/10 (100% improvement)
-
-Suggestions:
-1. 可以增加具体的主题范围（如"生成式AI"而非笼统的"AI"）
-2. 可以明确引用来源的要求
-3. 可以添加目标读者画像
+评估这个提示词：xxx
 ```
+
+### 迭代评估
+```
+迭代评估：
+提示词：xxx
+```
+
+---
+
+## 输出格式
+
+### 直接评估输出
+
+```markdown
+## 评估结果
+
+| 维度 | 评分 | 说明 |
+|------|------|------|
+| 清晰度 | 8/10 | 目标明确 |
+| 具体性 | 7/10 | 细节不足 |
+| 结构性 | 9/10 | 格式规范 |
+
+**总分**: 8/10
+
+## 改进建议
+
+1. [具体建议]
+2. [具体建议]
+```
+
+### 迭代评估输出
+
+```markdown
+## 评估结果
+
+| 维度 | 评分 |
+|------|------|
+| 清晰度 | 7/10 |
+| 具体性 | 6/10 |
+| 结构性 | 8/10 |
+
+## 改进计划 (patchPlan)
+
+- 明确[具体内容]的具体要求
+- 添加[缺失维度]的描述
+- 调整[结构问题]
+
+## 改进提示词 (improvements)
+
+[可直接使用的改进版本]
+```
+
+---
+
+## 对比评估示例
+
+### 示例: 用户提示词对比
+
+**原始提示词**:
+> 帮我写个文章
+
+**优化后提示词**:
+> 请写一篇关于AI发展趋势的文章，要求：
+> - 字数：1000-1500字
+> - 读者：互联网从业者
+> - 结构：引言、现状分析、未来趋势、结论
+> - 风格：专业但易懂
+
+**评估结果**:
+
+| 维度 | 原始 | 优化后 | 改进 |
+|------|------|--------|------|
+| 清晰度 | 5 | 9 | +80% |
+| 具体性 | 2 | 8 | +300% |
+| 结构性 | 3 | 9 | +200% |
+| **总分** | **3.3** | **8.7** | **+163%** |
+
+**改进建议**:
+1. 可增加具体主题范围
+2. 可明确引用来源要求
+3. 可添加读者画像
+
+---
+
+## 多消息对话评估
+
+适用于多轮对话中的单条消息评估：
+
+- **原始评估**: 评估对话中原始消息
+- **优化后评估**: 评估优化后消息
+- **对比评估**: 对比原始vs优化后
+- **直接评估**: 直接评估单条消息
+- **迭代评估**: 评估+改进方案
+
+---
+
+## 变量模式评估
+
+适用于带变量的提示词（如 `Hello {name}`）：
+
+- **原始评估**: 评估带变量的原始提示词
+- **优化后评估**: 评估优化后变量提示词
+- **对比评估**: 对比两者
+- **直接评估**: 直接评估
+- **迭代评估**: 评估+patchPlan
+
+---
+
+## 图像提示词评估
+
+### 文生图评估
+
+**触发**:
+```
+评估图像提示词：
+xxx
+```
+
+**输出**:
+- 构图评分
+- 描述清晰度
+- 风格一致性
+- 改进建议
+
+### 图生图评估
+
+**触发**:
+```
+评估图生图提示词：
+xxx
+```
+
+**输出**:
+- 编辑精准度
+- 保留元素评估
+- 修改合理性
+- 改进建议
+
+---
+
+## 对应模板
+
+| 评估类型 | 模板 |
+|----------|------|
+| 系统原始评估 | evaluation-basic-system-original |
+| 系统优化后评估 | evaluation-basic-system-optimized |
+| 系统对比评估 | evaluation-basic-system-compare |
+| 用户原始评估 | evaluation-basic-user-original |
+| 用户优化后评估 | evaluation-basic-user-optimized |
+| 用户对比评估 | evaluation-basic-user-compare |
+| 多消息原始 | evaluation-pro-system-original |
+| 多消息优化后 | evaluation-pro-system-optimized |
+| 多消息对比 | evaluation-pro-system-compare |
+| 变量模式原始 | evaluation-pro-user-original |
+| 变量模式优化后 | evaluation-pro-user-optimized |
+| 变量模式对比 | evaluation-pro-user-compare |
+| 图像文生图 | evaluation-image-text2image-prompt-only |
+| 图像图生图 | evaluation-image-image2image-prompt-only |
