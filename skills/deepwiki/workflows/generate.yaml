@@ -1,5 +1,5 @@
 name: generate
-description: 生成完整的代码库文档
+description: 生成完整的代码库文档（多文件输出）
 arguments:
   - name: path
     type: string
@@ -11,11 +11,6 @@ arguments:
     description: 输出目录
     required: false
     default: "docs/deepwiki"
-  - name: include
-    type: string
-    description: 要包含的章节（architecture,api,modules,file-inventory,dependencies）
-    required: false
-    default: "all"
 steps:
   - run: echo
-    args: ["请提供要生成文档的代码库路径："]
+    args: ["请提供要生成文档的代码库路径（默认当前目录）："]
