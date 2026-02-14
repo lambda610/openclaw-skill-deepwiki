@@ -18,7 +18,7 @@ Based on prompt-optimizer project built-in templates. 基于原版内置模板�
 
 ## Guided Workflow / 引导式流程
 
-If you need guidance, you can follow this interactive process:
+If you need guidance, follow this interactive process:
 
 ### Step 1: Select Function / 选择功能
 ```
@@ -28,28 +28,80 @@ If you need guidance, you can follow this interactive process:
 - 生成图像提示词 (Generate image prompt)
 ```
 
-### Step 2: Input Information / 输入信息
-根据选择，收集必要信息：
-- 待优化的提示词
-- 使用场景
-- 特殊要求
+### Step 2: Select Type / 选择类型 (Dynamic / 动态)
 
-### Step 3: Optimization / 优化输出
-输出优化后的提示词
+Based on selection, ask for specific type:
+
+**用户提示词优化 / User Prompt Optimization:**
+- 基础优化 (Basic)
+- 规划优化 (Planning)
+- 专业优化 (Professional)
+
+**系统提示词优化 / System Prompt Optimization:**
+- 通用优化 (General)
+- 格式化优化 (Format)
+- 分析型优化 (Analytical)
+
+**图像优化 / Image Optimization:**
+- 文生图 (Text-to-Image)
+- 图生图 (Image-to-Image)
+
+**迭代优化 / Iteration:**
+- 通用迭代 (General)
+- 图像迭代 (Image)
+
+### Step 3: Input Prompt / 输入提示词
+请提供需要优化的提示词 / Please provide the prompt to optimize
+
+### Step 4: Additional Info (Dynamic) / 补充信息 (动态)
+
+Ask based on template needs:
+
+**用户提示词:**
+- 目标模型: ChatGPT / Claude / 其他?
+- 输出格式: Markdown / JSON / 纯文本?
+- 长度限制: 有无字数要求?
+
+**系统提示词:**
+- 目标模型: 用于哪个 AI?
+- 复杂度: 简单 / 详细 / 完整版?
+
+**图像提示词:**
+- 目标工具: Midjourney / DALL-E / Stable Diffusion / FLUX?
+- 风格: 写实 / 摄影 / 插画 / 3D?
+- 画面比例: 1:1 / 16:9 / 9:16?
+
+**迭代优化:**
+- 上次优化结果: [获取上次结果]
+- 改进需求: [具体改进点]
+
+### Step 5: Output / 输出优化结果
 
 ### Example / 示例流程
 ```
 用户: 我想优化一个提示词
-AI: 请问是哪种类型的提示词？
+AI: 请问是哪种类型？
   1. 用户提示词（日常使用）
   2. 系统提示词（角色设定）
   3. 图像提示词（AI绘画）
-  4. 评估对比
+
+用户: 3 (图像)
+AI: 请选择：
+  1. 文生图 (Text-to-Image)
+  2. 图生图 (Image-to-Image)
 
 用户: 1
-AI: 请提供需要优化的用户提示词
+AI: 请描述想要的图像
 
-用户: 帮我写个文章
+用户: 一个长发女性用直发夹，像沙宣广告
+AI: 请问目标工具是什么？(可选)
+  - Midjourney / DALL-E / Stable Diffusion / 其他
+
+用户: Midjourney
+AI: 请问风格偏好？(可选)
+  - 写实 / 摄影 / 插画 / 3D
+
+用户: 摄影
 AI: [优化后...]
 ```
 
