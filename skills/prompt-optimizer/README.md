@@ -92,4 +92,13 @@ prompt-optimizer/
 
 ## License
 
-基于 prompt-optimizer 项目，遵循其开源协议。
+This project is based on [linshenkx/prompt-optimizer](https://github.com/linshenkx/prompt-optimizer), which is licensed under **GNU Affero General Public License v3.0 (AGPL-3.0)**.
+
+See [LICENSE](LICENSE) for full license text.
+
+```
+prompt-optimizer
+Copyright (C) 2025 linshenkx
+
+This program is licensed under the GNU Affero General Public License v3.0 only.
+```
