@@ -2,6 +2,8 @@
 
 > 轻量级异步任务管理方法，配合 OpenClaw 使用
 
+**⚠️ 注意**：这是一个轻量级 skill，不包含安装脚本。需要手动配置目录和 cron（见下方安装配置章节）。
+
 ---
 
 ## 核心理念
@@ -114,16 +116,78 @@ pending → in_progress → done
 
 ---
 
-## 安装配置
+## 安装配置（手动）
 
-1. 创建任务目录：
+由于 kanban 是轻量级任务管理方法，不需要安装额外组件，只需：
+
+### 步骤 1：创建本地任务目录
+
 ```bash
 mkdir -p ~/todo/{projects,archive}
 ```
 
-2. 创建基础文件（参考 templates/）
+### 步骤 2：创建基础文件
 
-3. 配置 Cron（参考下方的 OpenClaw 配置示例）
+从 `references/templates/` 复制模板文件到 `~/todo/`：
+
+```bash
+# 复制模板文件
+cp ~/projects/public-skills/skills/kanban/references/templates/inbox.md ~/todo/
+cp ~/projects/public-skills/skills/kanban/references/templates/active.md ~/todo/
+cp ~/projects/public-skills/skills/kanban/references/templates/backlog.md ~/todo/
+
+# 创建 archive 目录的说明文件
+echo "# Archive 归档" > ~/
+```
+
+### todo/archive/README.md步骤 3：配置 Cron
+
+参考下方的配置示例，根据你的平台调整：
+
+**Discord 示例**：
+```bash
+openclaw cron add \
+  --name "kanban-inbox-check" \
+  --every "1h" \
+  --message "1. 读取 ~/projects/public-skills/skills/kanban/references/README.md 了解执行规则 2. 读取 ~/todo/inbox.md 检查是否有新任务 3. 按规则处理并汇报到 <你的Channel ID>" \
+  --channel discord \
+  --to "<你的Channel ID>" \
+  --announce \
+  --expect-final
+```
+
+**Telegram 示例**：
+```bash
+openclaw cron add \
+  --name "kanban-inbox-check" \
+  --every "1h" \
+  --message "1. 读取 ~/projects/public-skills/skills/kanban/references/README.md 了解执行规则 2. 读取 ~/todo/inbox.md 检查是否有新任务 3. 按规则处理并汇报到 <你的Chat ID>" \
+  --channel telegram \
+  --to "<你的Chat ID>" \
+  --announce \
+  --expect-final
+```
+
+### 步骤 4：通知频道
+
+- 创建一个专属频道用于接收任务汇报（如 #kanban）
+- 将频道 ID 填入上方配置中的 `<你的Channel ID>`
+
+---
+
+## 验证安装
+
+配置完成后，可以手动触发一次测试：
+
+```bash
+# 往 inbox 添加测试任务
+echo "[P2] 测试任务" >> ~/todo/inbox.md
+
+# 手动触发 cron
+openclaw cron run <job-id>
+```
+
+或者直接在频道 @ 你的 agent 说"检查 todo"。
 
 ---
 
