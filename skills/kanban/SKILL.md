@@ -43,11 +43,18 @@ description: "异步任务管理系统。用于：(1) 添加任务到 inbox，(2
 ## 文件结构
 
 ```
-~/todo/
-├── inbox.md      # 任务入口
-├── active.md     # 执行中
-├── backlog.md    # 待处理
-└── README.md     # 完整规则
+~/todo/                    # 本地任务数据
+├── inbox.md              # 任务入口
+├── active.md             # 执行中
+├── backlog.md            # 待处理
+└── README.md             # 完整规则（来自 skill）
+
+skill 目录:
+kanban/
+├── SKILL.md              # 触发规则
+└── references/
+    ├── README.md         # 完整使用文档
+    └── templates/        # 模板文件
 ```
 
 ## 优先级
