@@ -4,16 +4,17 @@
 
 ## 格式
 ```markdown
-- [状态] T00X: [P优先级] [项目名] 任务描述
+- [状态] T00X: [P优先级] [project:项目名] [category:类别] 任务描述
   - owner: 
   - depends-on: 
+  - blocked-reason: (如果有)
   - updated: YYYY-MM-DD
 ```
 
 ## 状态说明
 - `pending`: 待开始
 - `in_progress`: 执行中
-- `blocked`: 卡住了
+- `blocked`: 卡住了，需要人补充信息
 - `done`: 完成
 
 ---
@@ -23,4 +24,7 @@
 （暂无）
 
 <!-- 模板 -->
-<!-- - [in_progress] T001: [P1] [project] 任务描述 -->
+<!-- - [in_progress] T001: [P1] [project:xxx] [category:xxx] 任务描述 -->
+<!--   - owner: agent-name -->
+<!--   - depends-on:  -->
+<!--   - updated: 2026-02-19 -->
